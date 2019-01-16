@@ -1,19 +1,19 @@
 <?php
 
 /**
- * Bizappay Payment Gateway Classs
+ * ToyyibPay Payment Gateway Classs
  */
-class bizappay extends WC_Payment_Gateway {
+class ToyyibPay extends WC_Payment_Gateway {
 	function __construct() {
-		$this->id = "Bizappay";
+		$this->id = "ToyyibPay";
 
-		$this->method_title = __( "Bizappay", 'Bizappay' );
+		$this->method_title = __( "ToyyibPay", 'ToyyibPay' );
 
-		$this->method_description = __( "Bizappay Payment Gateway Plug-in for WooCommerce", 'Bizappay' );
+		$this->method_description = __( "ToyyibPay Payment Gateway Plug-in for WooCommerce", 'ToyyibPay' );
 
-		$this->title = __( "Bizappay", 'Bizappay' );
+		$this->title = __( "ToyyibPay", 'ToyyibPay' );
 
-		$this->icon = 'https://bizappay.com/asset/img/bizappaylog.png';
+		$this->icon = 'https://toyyibpay.com/assets/img/icon/logop.png';
 
 		$this->has_fields = true;
 
@@ -37,38 +37,38 @@ class bizappay extends WC_Payment_Gateway {
 	public function init_form_fields() {
 		$this->form_fields = array(
 			'enabled'        => array(
-				'title'   => __( 'Enable / Disable', 'Bizappay' ),
-				'label'   => __( 'Enable this payment gateway', 'Bizappay' ),
+				'title'   => __( 'Enable / Disable', 'ToyyibPay' ),
+				'label'   => __( 'Enable this payment gateway', 'ToyyibPay' ),
 				'type'    => 'checkbox',
 				'default' => 'no',
 			),
 			'title'          => array(
-				'title'    => __( 'Title', 'Bizappay' ),
+				'title'    => __( 'Title', 'ToyyibPay' ),
 				'type'     => 'text',
-				'desc_tip' => __( 'Payment title the customer will see during the checkout process.', 'Bizappay' ),
-				'default'  => __( 'Bizappay', 'Bizappay' ),
+				'desc_tip' => __( 'Payment title the customer will see during the checkout process.', 'ToyyibPay' ),
+				'default'  => __( 'ToyyibPay', 'ToyyibPay' ),
 			),
 			'description'    => array(
-				'title'    => __( 'Description', 'Bizappay' ),
+				'title'    => __( 'Description', 'ToyyibPay' ),
 				'type'     => 'textarea',
-				'desc_tip' => __( 'Payment description the customer will see during the checkout process.', 'Bizappay' ),
-				'default'  => __( 'Pay securely using your online banking through Bizappay.', 'Bizappay' ),
+				'desc_tip' => __( 'Payment description the customer will see during the checkout process.', 'ToyyibPay' ),
+				'default'  => __( 'Pay securely using your online banking through ToyyibPay.', 'ToyyibPay' ),
 				'css'      => 'max-width:350px;'
 			),
 			'universal_category' => array(
-				'title'    => __( 'Category Code', 'Bizappay' ),
+				'title'    => __( 'Category Code', 'ToyyibPay' ),
 				'type'     => 'text',
-				'desc_tip' => __( 'This is the merchant ID that you can obtain from profile page in Bizappay', 'Bizappay' ),
+				'desc_tip' => __( 'This is the merchant ID that you can obtain from profile page in ToyyibPay', 'ToyyibPay' ),
 			),
 			'universal_form' => array(
-				'title'    => __( 'Merchant Email / Username', 'Bizappay' ),
+				'title'    => __( 'Merchant Email / Username', 'ToyyibPay' ),
 				'type'     => 'text',
-				'desc_tip' => __( 'This is the merchant ID that you can obtain from profile page in Bizappay', 'Bizappay' ),
+				'desc_tip' => __( 'This is the merchant ID that you can obtain from profile page in ToyyibPay', 'ToyyibPay' ),
 			),
 			'secretkey'      => array(
-				'title'    => __( 'User Secret Key', 'Bizappay' ),
+				'title'    => __( 'User Secret Key', 'ToyyibPay' ),
 				'type'     => 'text',
-				'desc_tip' => __( 'This is the secret key that you can obtain from profile page in Bizappay', 'Bizappay' ),
+				'desc_tip' => __( 'This is the secret key that you can obtain from profile page in ToyyibPay', 'ToyyibPay' ),
 			)
 		);
 	}
@@ -78,7 +78,7 @@ class bizappay extends WC_Payment_Gateway {
 		# Get this order's information so that we know who to charge and how much
 		$customer_order = wc_get_order( $order_id );
 
-		# Prepare the data to send to Bizappay
+		# Prepare the data to send to ToyyibPay
 		$detail = "Payment_for_order_" . $order_id;
 
 		$old_wc = version_compare( WC_VERSION, '3.0', '<' );
@@ -112,21 +112,21 @@ class bizappay extends WC_Payment_Gateway {
 		);
 
 		# Format it properly using get
-		$bizappay_args = '';
+		$ToyyibPay_args = '';
 		foreach ( $post_args as $key => $value ) {
-			if ( $bizappay_args != '' ) {
-				$bizappay_args .= '&';
+			if ( $ToyyibPay_args != '' ) {
+				$ToyyibPay_args .= '&';
 			}
-			$bizappay_args .= $key . "=" . $value;
+			$ToyyibPay_args .= $key . "=" . $value;
 		}
 
 		return array(
 			'result'   => 'success',
-			'redirect' => 'https://bizappay.com/index.php/api/wppay?' . $bizappay_args
+			'redirect' => 'https://toyyibpay.com/index.php/api/wppay?' . $ToyyibPay_args
 		);
 	}
 
-	public function check_bizappay_response() {
+	public function check_ToyyibPay_response() {
 		if ( isset( $_REQUEST['status_id'] ) && isset( $_REQUEST['order_id'] ) && isset( $_REQUEST['msg'] ) && isset( $_REQUEST['transaction_id'] ) && isset( $_REQUEST['hash'] ) ) {
 			global $woocommerce;
 
@@ -150,7 +150,7 @@ class bizappay extends WC_Payment_Gateway {
 							if ( strtolower( $order->get_status() ) == 'pending' ) {
 								$order->payment_complete();
 
-								$order->add_order_note( 'Payment successfully made through Bizappay. Transaction reference is ' . $_REQUEST['transaction_id'] );
+								$order->add_order_note( 'Payment successfully made through ToyyibPay. Transaction reference is ' . $_REQUEST['transaction_id'] );
 							}
 
 							if ( $is_callback ) {
@@ -166,12 +166,12 @@ class bizappay extends WC_Payment_Gateway {
 						if ( strtolower( $order->get_status() ) == 'pending' ) {
 							if ( ! $is_callback ) {
 								$order->add_order_note( 'Payment was unsuccessful' );
-								add_filter( 'the_content', 'bizappay_payment_declined_msg' );
+								add_filter( 'the_content', 'ToyyibPay_payment_declined_msg' );
 							}
 						}
 					}
 				} else {
-					add_filter( 'the_content', 'bizappay_hash_error_msg' );
+					add_filter( 'the_content', 'ToyyibPay_hash_error_msg' );
 				}
 			}
 
