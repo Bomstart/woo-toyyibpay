@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: toyyibPay for Woocommerce
+ * Plugin Name: ToyyibPay for Woocommerce
  * Plugin URI: https://toyyibpay.com
- * Description: Enable online payments using online banking. Currently toyyibPay service is only available to businesses that reside in Malaysia.
+ * Description: Enable online payments using online banking. Currently ToyyibPay service is only available to businesses that reside in Malaysia.
  * Version: 1.0.0
  * Author: Bomstart Media Sdn Bhd/Ansi Systems Sdn Bhd
  * Author URI: https://bomstart.my
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-# Include toyyibPay Class and register Payment Gateway with WooCommerce
+# Include ToyyibPay Class and register Payment Gateway with WooCommerce
 add_action( 'plugins_loaded', 'toyyibpay_init', 0 );
 
 function toyyibpay_init() {
